@@ -1,0 +1,33 @@
+import pgzrun
+from random import randint
+#Pygame standard rules for deciding the title of your game window
+TITLE= "Good shot"
+#Pygame standard for deciding the width and height for your game window in pixels
+WIDTH=500
+HEIGHT=500
+#Variable to store the message displayed on your screen
+message=""
+#Actor is a built in object in pgzero
+#Actor interacts with other actors,move around on the screen
+#similar to sprite in scrath
+alien= Actor("alien") 
+# By default functuon which will be called to update and siplay objects into the screen
+def draw():
+    #screen is another built - in object
+    screen.clear()
+    screen.fill(color=("red"))
+    alien.draw()
+
+def place_alien():
+    alien.x = randint(50,WIDTH-50)
+    alien.y = randint(50,HEIGHT-50)
+    
+def on_mouse_down(pos):
+    global message
+    if alien.collidepoint(pos):
+        message="Good shot!"
+    else:
+     message = "You missed"
+#This function or methods can be called to start processing
+place_alien()
+pgzrun.go()
